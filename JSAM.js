@@ -6,7 +6,7 @@ console.log ("testing");
 let refer;
 
 refer = prompt("Hey there, what's your name?");
-alert("Welcome to my page " +refer+ "I hope you're having a great day!");
+alert("Welcome to my page " +refer+ " I hope you're having a great day!");
    
 let answer1 = confirm ("Press OK if you intended to visit my website?");
 //console.log(answer1);
@@ -66,20 +66,85 @@ alert("Isn't it the best? I enjoy it at least once per hour.");
 alert("That's the saddest story I've cheddar heard.");
 }
 
-function guessNumber() {
-  let secretNumber = 35;
-  let numbGuess = prompt("Can you guess my age? (Hint - it's between 1-50)");
+// Initial setup of variables.
+let lowerLimit = 1;
+let upperLimit = 25;
+let tries = 4;
+let answer = Math.floor(Math.random() * (upperLimit - lowerLimit + 1)) + lowerLimit;
+let guess = '';
+let message = 'Guess which number I\'m thinking of between ' + lowerLimit + ' and ' + upperLimit + ':';
 
-while (numbGuess != secretNumber) {
-  if (numbGuess < secretNumber) {
-      alert("Too low, try again!")
-      guessNumber()
+// Keep prompting the user for a guess until the game ends.
+while (tries > 0) {
+  // Prompt the user for a guess.
+  guess = prompt(message, guess);
+
+  // If the cancel button was pushed, let the user know the game is ending and break out of the loop.
+  if (guess === null) {
+    alert('Okay then, spoilsport!');
+    break;
+  }
+  // If the guess is a number...
+  else if (isFinite(guess) && guess !== '') {
+    // Make sure the guess is converted into a number.
+    guess = +guess;
+
+    // If the guess is less than the range, let the user know.
+    if (guess < lowerLimit) {
+      alert('Can you not read? I said it shouldn\'t be lower than ' + lowerLimit + '.');
+    }
+    // If the guess is greater than the range, let the user know.
+    else if (guess > upperLimit) {
+      alert('Can you not read? I said it can\'t be higher than ' + upperLimit + '.');
+    }
+    // If the guess is too high, let the user know.
+    else if (guess > answer) {
+      alert('Nope - your guess is too high.');
+    }
+    // If the guess is too low, let the user know.
+    else if (guess < answer) {
+      alert('Nope - your guess is too low.');
+    }
+    // If none of the other cases were true, the answer must have been guessed, so let the user know and break out of the loop.
+    else {
+      alert('Awesome guess - gold star for you!');
+      break;
+    }
+  }
+  // If the guess is not a number, let the user know.
+  else {
+    alert('That is not a number, now is it?');
+  }
+
+  tries--;
+}
+
+// Define the question and possible answers
+let question = "Name one of the coolest countries I have visited.";
+let possibleAnswers = ["Japan", "Italy", "Jamaica"];
+
+// Display the question prompt and available attempts
+let attempts = 6;
+while (attempts > 0) {
+  let userAnswer = prompt(question + "\nYou have " + attempts + " attempts remaining.");
+
+  // Check if the user's answer is correct
+  let isCorrect = false;
+  for (let i = 0; i < possibleAnswers.length; i++) {
+    if (userAnswer.toLowerCase() === possibleAnswers[i].toLowerCase()) {
+      isCorrect = true;
+      break;
+    }
+  }
+
+  if (isCorrect) {
+    alert("Spot on - I love that place!");
+    break;
   } else {
-      alert("Too high, try again!")
-      guessNumber()
-  };
-}
-alert("You guessed my age!");
+    alert("Maybe cool but not in my top three");
+    attempts--;
+  }
 }
 
-guessNumber()
+// Display all possible correct answers
+alert("The possible correct answers are: " + possibleAnswers.join(", "));
