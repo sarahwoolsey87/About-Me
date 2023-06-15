@@ -1,13 +1,13 @@
 
 
 
-console.log ("testing");
+//console.log ("testing");
 
 let refer;
 
-refer = prompt("Hey there, what's your name?");
+refer = prompt("Hey there, what's your name? If you don't tell me, I'm gonna call you 'null");
 alert("Welcome to my page " +refer+ " I hope you're having a great day!");
-   
+
 let answer1 = confirm ("Press OK if you intended to visit my website?");
 //console.log(answer1);
 
@@ -29,6 +29,7 @@ while (friend != "yes" && friend != "no" && friend != "y" && friend != "n") {
 if (friend === "yes" || friend === "y") {
 //console.log("Awesome - let's party like it's 1969!");
 alert("Awesome - let's party like it's 1969");
+
 
 } else if (friend === "no" || friend === "n") {
 //console.log("Aw man, that sucks. We should change that");
@@ -79,72 +80,41 @@ while (tries > 0) {
   // Prompt the user for a guess.
   guess = prompt(message, guess);
 
-  // If the cancel button was pushed, let the user know the game is ending and break out of the loop.
-  if (guess === null) {
-    alert('Okay then, spoilsport!');
-    break;
-  }
-  // If the guess is a number...
-  else if (isFinite(guess) && guess !== '') {
-    // Make sure the guess is converted into a number.
-    guess = +guess;
 
-    // If the guess is less than the range, let the user know.
-    if (guess < lowerLimit) {
-      alert('Can you not read? I said it shouldn\'t be lower than ' + lowerLimit + '.');
-    }
-    // If the guess is greater than the range, let the user know.
-    else if (guess > upperLimit) {
-      alert('Can you not read? I said it can\'t be higher than ' + upperLimit + '.');
-    }
-    // If the guess is too high, let the user know.
-    else if (guess > answer) {
-      alert('Nope - your guess is too high.');
-    }
-    // If the guess is too low, let the user know.
-    else if (guess < answer) {
-      alert('Nope - your guess is too low.');
-    }
-    // If none of the other cases were true, the answer must have been guessed, so let the user know and break out of the loop.
-    else {
-      alert('Awesome guess - gold star for you!');
-      break;
-    }
-  }
-  // If the guess is not a number, let the user know.
-  else {
-    alert('That is not a number, now is it?');
-  }
-
-  tries--;
+if (guess === null) {
+alert('Okay then, spoilsport!');
+break;
 }
 
-// Define the question and possible answers
-let question = "Name one of the coolest countries I have visited.";
-let possibleAnswers = ["Japan", "Italy", "Jamaica"];
+else if (isFinite(guess) && guess !== '') {
+guess = +guess;
 
-// Display the question prompt and available attempts
-let attempts = 6;
-while (attempts > 0) {
-  let userAnswer = prompt(question + "\nYou have " + attempts + " attempts remaining.");
-
-  // Check if the user's answer is correct
-  let isCorrect = false;
-  for (let i = 0; i < possibleAnswers.length; i++) {
-    if (userAnswer.toLowerCase() === possibleAnswers[i].toLowerCase()) {
-      isCorrect = true;
-      break;
-    }
-  }
-
-  if (isCorrect) {
-    alert("Spot on - I love that place!");
-    break;
-  } else {
-    alert("Maybe cool but not in my top three");
-    attempts--;
-  }
+if (guess < lowerLimit) {
+alert('Can you not read? I said it shouldn\'t be lower than ' + lowerLimit + '.');
+}
+else if (guess > upperLimit) {
+alert('Can you not read? I said it can\'t be higher than ' + upperLimit + '.');
+}
+else if (guess > answer) {
+alert('Nope - your guess is too high.');
+}
+else if (guess < answer) {
+alert('Nope - your guess is too low.');
 }
 
-// Display all possible correct answers
-alert("The possible correct answers are: " + possibleAnswers.join(", "));
+else {
+alert('Awesome guess - gold star for you!');
+break;
+}
+}
+else {
+alert('That is not a number, now is it?');
+}
+
+tries--;
+}
+
+if (tries === 0) {
+alert('Sorry, you ran out of attempts. The correct answer was ' + answer + '.');
+}
+
